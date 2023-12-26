@@ -2,3 +2,4 @@ https://codepen.io/hafeez-pp/pen/XWjRqex
 https://codepen.io/RedJokingInn/pen/pVKWjz
 https://demo.webslesson.info/excel-to-html-javascript/
 excel read html table js
+Биринчи автоматга Ввод -1  уртасига I-с.ш 0.4кВ. Уртадаги автоматга СВ Иккинчи автоматга Ввод-2 уртасига  св автоматдан кейин II-с.ш 0.4кВ.
