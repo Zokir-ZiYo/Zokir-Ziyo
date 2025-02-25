@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Misol</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #1c1e34;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-wrap: wrap;
+        }
+
+        .panel {
+            width: 250px;
+            height: 120px;
+            background-color: #1e2a47;
+            color: white;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-direction: column;
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 2px solid transparent;
+            background-image: linear-gradient(45deg, #6a11cb, #2575fc);
+            background-clip: border-box;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.4), 0 0 20px rgba(255, 255, 255, 0.1), 0 0 25px rgba(255, 255, 255, 0.2);
+        }
+
+        .panel.expanded {
+            width: 400px;
+            height: 350px;
+            background-color: #3a58d2;
+            background-image: linear-gradient(45deg, #6a11cb, #2575fc);
+        }
+
+        .panelTitle {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-align: center;
+            margin-top: 10px;
+            color: #fff;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .closeBtn {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e74a3b;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 0 10px rgba(231, 74, 59, 0.7);
+            transition: 0.3s;
+        }
+
+        .panel.expanded .closeBtn {
+            display: block;
+        }
+
+        .closeBtn:hover {
+            background-color: #c0392b;
+            box-shadow: 0 0 15px rgba(231, 74, 59, 0.7);
+        }
+
+        .panelContent {
+            display: block;
+            text-align: left;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .panelContent div {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        label {
+            font-size: 14px;
+            color: white;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #2e3c62;
+            color: white;
+            font-size: 14px;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+        }
+
+        input:focus {
+            background-color: #4e5c8a;
+            border: 1px solid #2575fc;
+            box-shadow: 0 0 10px rgba(37, 117, 252, 0.5);
+        }
+
+        #saveBtn {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 0 10px rgba(40, 167, 69, 0.4);
+        }
+
+        #saveBtn:hover {
+            background-color: #218838;
+            box-shadow: 0 0 15px rgba(40, 167, 69, 0.6);
+        }
+
+        #saveBtn:active {
+            background-color: #1e7e34;
+        }
+
+        .neon-text {
+            color: #fff;
+            text-shadow: 0 0 5px #ff7b00, 0 0 10px #ff7b00, 0 0 15px #ff7b00, 0 0 20px #ff7b00;
+        }
+
+        .panelContent {
+            transition: all 0.5s ease;
+        }
+        
+        .panelTitle {
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Panel 1 -->
+<div class="panel">
+    <div class="panelTitle neon-text">Panel 1</div>
+    <button class="closeBtn" id="closeBtn1">X</button>
+    <div class="panelContent">
+        <div class="tokValueText">Tok = 1 mA</div>
+        <div class="tokMaxValueText">Chegaraviy qiymat = 10 mA</div>
+        <label for="panelName1" class="panelNameLabel" style="display: none;">Panel nomi:</label>
+        <input type="text" id="panelName1" placeholder="Panel nomini kiriting" value="Panel 1" style="display: none;">
+        <label for="tokMaxValue1" class="tokMaxValueLabel" style="display: none;">Chegaraviy tok:</label>
+        <input type="number" id="tokMaxValue1" placeholder="Chegaraviy tokni kiriting" value="10" style="display: none;">
+        <button id="saveBtn1" style="display: none;">Saqlash</button>
+    </div>
+</div>
+
+<!-- Panel 2 -->
+<div class="panel">
+    <div class="panelTitle neon-text">Panel 2</div>
+    <button class="closeBtn" id="closeBtn2">X</button>
+    <div class="panelContent">
+        <div class="tokValueText">Tok = 2 mA</div>
+        <div class="tokMaxValueText">Chegaraviy qiymat = 10 mA</div>
+        <label for="panelName2" class="panelNameLabel" style="display: none;">Panel nomi:</label>
+        <input type="text" id="panelName2" placeholder="Panel nomini kiriting" value="Panel 2" style="display: none;">
+        <label for="tokMaxValue2" class="tokMaxValueLabel" style="display: none;">Chegaraviy tok:</label>
+        <input type="number" id="tokMaxValue2" placeholder="Chegaraviy tokni kiriting" value="10" style="display: none;">
+        <button id="saveBtn2" style="display: none;">Saqlash</button>
+    </div>
+</div>
+
+<!-- Panel 3 -->
+<div class="panel">
+    <div class="panelTitle neon-text">Panel 3</div>
+    <button class="closeBtn" id="closeBtn3">X</button>
+    <div class="panelContent">
+        <div class="tokValueText">Tok = 3 mA</div>
+        <div class="tokMaxValueText">Chegaraviy qiymat = 10 mA</div>
+        <label for="panelName3" class="panelNameLabel" style="display: none;">Panel nomi:</label>
+        <input type="text" id="panelName3" placeholder="Panel nomini kiriting" value="Panel 3" style="display: none;">
+        <label for="tokMaxValue3" class="tokMaxValueLabel" style="display: none;">Chegaraviy tok:</label>
+        <input type="number" id="tokMaxValue3" placeholder="Chegaraviy tokni kiriting" value="10" style="display: none;">
+        <button id="saveBtn3" style="display: none;">Saqlash</button>
+    </div>
+</div>
+
+<!-- Panel 4 -->
+<div class="panel">
+    <div class="panelTitle neon-text">Panel 4</div>
+    <button class="closeBtn" id="closeBtn4">X</button>
+    <div class="panelContent">
+        <div class="tokValueText">Tok = 4 mA</div>
+        <div class="tokMaxValueText">Chegaraviy qiymat = 10 mA</div>
+        <label for="panelName4" class="panelNameLabel" style="display: none;">Panel nomi:</label>
+        <input type="text" id="panelName4" placeholder="Panel nomini kiriting" value="Panel 4" style="display: none;">
+        <label for="tokMaxValue4" class="tokMaxValueLabel" style="display: none;">Chegaraviy tok:</label>
+        <input type="number" id="tokMaxValue4" placeholder="Chegaraviy tokni kiriting" value="10" style="display: none;">
+        <button id="saveBtn4" style="display: none;">Saqlash</button>
+    </div>
+</div>
+
+<!-- Panel 5 -->
+<div class="panel">
+    <div class="panelTitle neon-text">Panel 5</div>
+    <button class="closeBtn" id="closeBtn5">X</button>
+    <div class="panelContent">
+        <div class="tokValueText">Tok = 5 mA</div>
+        <div class="tokMaxValueText">Chegaraviy qiymat = 10 mA</div>
+        <label for="panelName5" class="panelNameLabel" style="display: none;">Panel nomi:</label>
+        <input type="text" id="panelName5" placeholder="Panel nomini kiriting" value="Panel 5" style="display: none;">
+        <label for="tokMaxValue5" class="tokMaxValueLabel" style="display: none;">Chegaraviy tok:</label>
+        <input type="number" id="tokMaxValue5" placeholder="Chegaraviy tokni kiriting" value="10" style="display: none;">
+        <button id="saveBtn5" style="display: none;">Saqlash</button>
+    </div>
+</div>
+
+<!-- Panel 6 -->
+<div class="panel">
+    <div class="panelTitle neon-text">Panel 6</div>
+    <button class="closeBtn" id="closeBtn6">X</button>
+    <div class="panelContent">
+        <div class="tokValueText">Tok = 6 mA</div>
+        <div class="tokMaxValueText">Chegaraviy qiymat = 10 mA</div>
+        <label for="panelName6" class="panelNameLabel" style="display: none;">Panel nomi:</label>
+        <input type="text" id="panelName6" placeholder="Panel nomini kiriting" value="Panel 6" style="display: none;">
+        <label for="tokMaxValue6" class="tokMaxValueLabel" style="display: none;">Chegaraviy tok:</label>
+        <input type="number" id="tokMaxValue6" placeholder="Chegaraviy tokni kiriting" value="10" style="display: none;">
+        <button id="saveBtn6" style="display: none;">Saqlash</button>
+    </div>
+</div>
+
+<script>
+    const panels = document.querySelectorAll('.panel');
+
+    panels.forEach((panel, index) => {
+        const closeBtn = panel.querySelector(`#closeBtn${index + 1}`);
+        const panelTitle = panel.querySelector('.panelTitle');
+        const tokValueText = panel.querySelector('.tokValueText');
+        const tokMaxValueText = panel.querySelector('.tokMaxValueText');
+        const panelNameLabel = panel.querySelector('.panelNameLabel');
+        const tokMaxValueLabel = panel.querySelector('.tokMaxValueLabel');
+        const panelNameInput = panel.querySelector(`#panelName${index + 1}`);
+        const tokMaxValueInput = panel.querySelector(`#tokMaxValue${index + 1}`);
+        const saveBtn = panel.querySelector(`#saveBtn${index + 1}`);
+        const panelContent = panel.querySelector('.panelContent');
+
+        // Panelni kattalashtirish uchun
+        panel.addEventListener('click', function(event) {
+            if (event.target !== closeBtn && !panel.classList.contains('expanded')) {
+                panel.classList.add('expanded');
+            }
+        });
+
+        // X tugmasi bilan panelni kichraytirish
+        closeBtn.addEventListener('click', function(event) {
+            event.stopPropagation();
+            panel.classList.remove('expanded');
+            tokMaxValueInput.style.display = 'none';
+            panelNameInput.style.display = 'none';
+            panelNameLabel.style.display = 'none';
+            tokMaxValueLabel.style.display = 'none';
+            saveBtn.style.display = 'none';
+            panelContent.style.display = 'block';
+        });
+
+        // Panel kattalashganda inputlar va saqlash tugmasi ko'rinadi
+        panel.addEventListener('click', function(event) {
+            if (panel.classList.contains('expanded')) {
+                panelContent.style.display = 'block';
+                panelNameLabel.style.display = 'block';
+                tokMaxValueLabel.style.display = 'block';
+                panelNameInput.style.display = 'block';
+                tokMaxValueInput.style.display = 'block';
+                saveBtn.style.display = 'block';
+            }
+        });
+
+        // Saqlash tugmasi
+        saveBtn.addEventListener('click', function() {
+            const tokMaxValue = tokMaxValueInput.value;
+            const panelName = panelNameInput.value;
+            if (tokMaxValue && panelName) {
+                panelTitle.textContent = `${panelName}`;
+                tokMaxValueText.textContent = `Chegaraviy qiymat = ${tokMaxValue} mA`;
+                alert(`Panel nomi: ${panelName}, Chegaraviy qiymat: ${tokMaxValue} mA saqlandi!`);
+            } else {
+                alert('Iltimos, barcha maydonlarni to\'ldiring!');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
